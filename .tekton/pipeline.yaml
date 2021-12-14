@@ -1,0 +1,100 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pipeline
+spec:
+  params:
+    - name: git-access-token
+      description: the token to access the git repository for the clone operations
+    - name: repository
+      description: the git repo
+    - name: branch
+      description: the branch for the git repo
+    - name: revision
+      description: the git revision/commit for the git repo
+      default: ""
+    - name: pr-repository
+      description: The source git repo for the PullRequest
+      default: ""
+    - name: pr-branch
+      description: The source branch for the PullRequest
+    - name: pr-revision
+      description: the commit id/sha for the PullRequest
+    - name: terraform-cmd
+      description: (optional) Pattern will only apply when set to apply
+      default: "plan"
+    - name: pipeline-debug
+      default: "false"
+      description: Enable debug output within pipeline
+    - name: schematics-wksp
+      default: "test-schematics"
+      description: Schematics workspace name
+  workspaces:
+    - name: pipeline-ws
+  tasks:
+    - name: repo-clone-task
+      taskRef:
+        name: git-clone-repo
+      workspaces:
+        - name: output
+          workspace: pipeline-ws
+      params:
+        - name: git-access-token
+          value: $(params.git-access-token)
+        - name: repository
+          value: $(params.repository)
+        - name: branch
+          value: $(params.branch)
+        - name: revision
+          value: $(params.revision)
+        - name: pr-repository
+          value: $(params.pr-repository)
+        - name: pr-branch
+          value: $(params.pr-branch)
+        - name: pr-revision
+          value: $(params.pr-revision)
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)
+
+    - name: cra-scan
+      runAfter:
+        - repo-clone-task
+      taskRef:
+        name: cra-scan
+      workspaces:
+        - name: artifacts
+          workspace: pipeline-ws
+        - name: secrets
+          workspace: pipeline-ws
+      params:
+        - name: repository
+          value: $(params.repository)
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)
+
+    - name: schematics
+      runAfter:
+        - cra-scan
+      taskRef:
+        name: schematics
+      workspaces:
+        - name: artifacts
+          workspace: pipeline-ws
+        - name: secrets
+          workspace: pipeline-ws
+      params:
+        - name: repository
+          value: $(params.repository)
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)
+        - name: schematics-wksp
+          value: $(params.schematics-wksp)
+        - name: terraform-cmd
+          value: $(params.terraform-cmd)
+    
+    - name: trigger-app-cicd
+      runAfter:
+        - schematics
+      taskRef:
+        name: trigger-app-cicd
