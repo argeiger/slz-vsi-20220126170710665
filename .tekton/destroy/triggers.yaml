@@ -37,7 +37,7 @@ metadata:
 spec:
   params:
     - name: triggerName
-      value: git-trigger-manual
+      value: manual-trigger
 ---
 apiVersion: tekton.dev/v1beta1
 kind: EventListener
