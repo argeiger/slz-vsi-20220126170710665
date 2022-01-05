@@ -18,7 +18,7 @@ spec:
       default: "false"
     - name: terraform-cmd
       description: (optional) Pattern will only apply when set to apply
-      default: "plan"
+      default: "apply"
     - name: schematics-wksp
       description: The schematics workspace name 
       default: ""
@@ -235,7 +235,7 @@ spec:
           ACTIVITY_ID=$(echo $ACTIVITY | jq -r ".activityid")
           echo "Activity ID   $ACTIVITY_ID"
           # poll until status is no longer INPROGRESS, or if there is an error
-          error_count = 0
+          error_count=0
           while :
           do
             STATUS=$(ibmcloud terraform workspace action --id $WORKSPACE_ID --act-id $ACTIVITY_ID --json)
@@ -299,7 +299,7 @@ spec:
           ACTIVITY_ID=$(echo $ACTIVITY | jq -r ".activityid")
           echo "Activity ID   $ACTIVITY_ID"
           # poll until status is no longer INPROGRESS, or if there is an error
-          error_count = 0
+          error_count=0
           while :
           do
             STATUS=$(ibmcloud terraform workspace action --id $WORKSPACE_ID --act-id $ACTIVITY_ID --json)
@@ -339,6 +339,11 @@ spec:
         - |
           #!/bin/bash
 
+          if [[ "${TERRAFORM_CMD}" != "apply" ]]; then 
+            echo "terraform-cmd doesn't equal apply.  Please set to apply if you wish to apply the terraform plan"
+            exit 0;
+          fi
+
           REGION="--no-region"
          
           # force login (required by schematics cli)
@@ -362,7 +367,7 @@ spec:
           ACTIVITY_ID=$(echo $ACTIVITY | jq -r ".activityid")
           echo "Activity ID   $ACTIVITY_ID"
           # poll until status is no longer INPROGRESS, or if there is an error
-          error_count = 0
+          error_count=0
           while :
           do
             STATUS=$(ibmcloud terraform workspace action --id $WORKSPACE_ID --act-id $ACTIVITY_ID --json)

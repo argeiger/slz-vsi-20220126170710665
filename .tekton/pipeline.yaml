@@ -23,7 +23,7 @@ spec:
       description: the commit id/sha for the PullRequest
     - name: terraform-cmd
       description: (optional) Pattern will only apply when set to apply
-      default: "plan"
+      default: "apply"
     - name: pipeline-debug
       default: "false"
       description: Enable debug output within pipeline
