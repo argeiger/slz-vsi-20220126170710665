@@ -66,7 +66,7 @@ mgmt_vpc_subnets = {
   }
 
 mgmt_acls = {
-  base-acl = {
+  mgmt-base-acl = {
       rules = [
         {
         name        = "inbound-allow-ibm"
@@ -94,7 +94,7 @@ mgmt_acls = {
 }
 
 mgmt_security_groups = {
-  base-security-group = {
+  mgmt-base-security-group = {
       rules = [
         {
             direction = "inbound"
@@ -249,7 +249,7 @@ wrkld_vpc_subnets = {
   }
 
 wrkld_acls = {
-  base-acl = {
+  wrkld-base-acl = {
       rules = [
         {
         name        = "inbound-allow-ibm"
@@ -277,7 +277,7 @@ wrkld_acls = {
 }
 
 wrkld_security_groups = {
-  base-security-group = {
+  wrkld-base-security-group = {
       rules = [
         {
             direction = "inbound"
