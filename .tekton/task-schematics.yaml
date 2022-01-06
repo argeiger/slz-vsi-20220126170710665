@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: infrasructure-provision
+  name: infrasructure-provision-task
 spec:
   params:
     - name: repository

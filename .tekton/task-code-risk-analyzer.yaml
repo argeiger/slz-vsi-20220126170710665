@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: compliance-scan
+  name: compliance-scan-task
 spec:
   params:
     - name: repository

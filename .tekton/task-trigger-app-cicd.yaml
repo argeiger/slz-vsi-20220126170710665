@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: application-cicd
+  name: application-cicd-task
 spec:
   steps:
     - name: application-cicd
