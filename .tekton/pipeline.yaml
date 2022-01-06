@@ -57,11 +57,11 @@ spec:
         - name: pipeline-debug
           value: $(params.pipeline-debug)
 
-    - name: cra-scan
+    - name: compliance-scan
       runAfter:
         - repo-clone-task
       taskRef:
-        name: cra-scan
+        name: compliance-scan
       workspaces:
         - name: artifacts
           workspace: pipeline-ws
@@ -73,11 +73,11 @@ spec:
         - name: pipeline-debug
           value: $(params.pipeline-debug)
 
-    - name: schematics
+    - name: infrasructure-provision
       runAfter:
-        - cra-scan
+        - compliance-scan
       taskRef:
-        name: schematics
+        name: infrasructure-provision
       workspaces:
         - name: artifacts
           workspace: pipeline-ws
@@ -93,8 +93,8 @@ spec:
         - name: terraform-cmd
           value: $(params.terraform-cmd)
     
-    - name: trigger-app-cicd
+    - name: application-cicd
       runAfter:
-        - schematics
+        - infrasructure-provision
       taskRef:
-        name: trigger-app-cicd
+        name: application-cicd

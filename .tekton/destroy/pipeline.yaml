@@ -15,9 +15,9 @@ spec:
       default: "no"
       description: Confirm deletion of resources
   tasks:
-    - name: schematics
+    - name: workspace
       taskRef:
-        name: task-schematics-destroy-resources
+        name: task-destroy-resources
       workspaces:
       params:
         - name: pipeline-debug

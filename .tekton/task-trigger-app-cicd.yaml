@@ -2,10 +2,10 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: trigger-app-cicd
+  name: application-cicd
 spec:
   steps:
-    - name: trigger-app-cicd
+    - name: application-cicd
       image: icr.io/continuous-delivery/pipeline/pipeline-base-ubi:3.3
       imagePullPolicy: Always
       command: ["/bin/bash", "-c"]
