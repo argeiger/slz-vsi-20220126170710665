@@ -31,37 +31,37 @@ mgmt_vpc_subnets = {
     mgmt-zone-1-subnet-vsi = {
       zone_number = "1"
       cidr_block = "10.10.10.0/24"
-      network_acl = "base-acl"
+      network_acl = "mgmt-base-acl"
     },
     mgmt-zone-1-subnet-vpe = {
       zone_number = "1"
       cidr_block = "10.10.20.0/24"
-      network_acl = "base-acl"
+      network_acl = "mgmt-base-acl"
     },
     mgmt-zone-1-subnet-vpn = {
       zone_number = "1"
       cidr_block = "10.10.30.0/24"
-      network_acl = "base-acl"
+      network_acl = "mgmt-base-acl"
     },
     mgmt-zone-2-subnet-vsi = {
       zone_number = "2"
       cidr_block = "10.20.10.0/24"
-      network_acl = "base-acl"
+      network_acl = "mgmt-base-acl"
     },
     mgmt-zone-2-subnet-vpe = {
       zone_number = "2"
       cidr_block = "10.20.20.0/24"
-      network_acl = "base-acl"
+      network_acl = "mgmt-base-acl"
     },
     mgmt-zone-3-subnet-vsi = {
       zone_number = "3"
       cidr_block = "10.30.10.0/24"
-      network_acl = "base-acl"
+      network_acl = "mgmt-base-acl"
     },
     mgmt-zone-3-subnet-vpe = {
       zone_number = "3"
       cidr_block = "10.30.20.0/24"
-      network_acl = "base-acl"
+      network_acl = "mgmt-base-acl"
     }
   }
 
@@ -98,7 +98,7 @@ mgmt_security_groups = {
       rules = [
         {
             direction = "inbound"
-            remote = "base-security-group"
+            remote = "mgmt-base-security-group"
         },
         {
             direction   = "inbound"
@@ -110,7 +110,7 @@ mgmt_security_groups = {
         },
         {
             direction = "outbound"
-            remote = "base-security-group"
+            remote = "mgmt-base-security-group"
         },
         {
             direction = "outbound"
@@ -155,7 +155,7 @@ mgmt_vsis = [
       image_id = "<USER INPUT REQUIRED>"
       profile = "cx2-2x4"
       subnet = "mgmt-zone-1-subnet-vsi"
-      security_groups = ["base-security-group"]
+      security_groups = ["mgmt-base-security-group"]
       ssh_key_list = ["mgmt-sshkey"]
    },
    {
@@ -164,7 +164,7 @@ mgmt_vsis = [
       image_id = "<USER INPUT REQUIRED>"
       profile = "cx2-2x4"
       subnet = "mgmt-zone-2-subnet-vsi"
-      security_groups = ["base-security-group"]
+      security_groups = ["mgmt-base-security-group"]
       ssh_key_list = ["mgmt-sshkey"]
    },
    {
@@ -173,7 +173,7 @@ mgmt_vsis = [
       image_id = "<USER INPUT REQUIRED>"
       profile = "cx2-2x4"
       subnet = "mgmt-zone-3-subnet-vsi"
-      security_groups = ["base-security-group"]
+      security_groups = ["mgmt-base-security-group"]
       ssh_key_list = ["mgmt-sshkey"]
    },
 ]
@@ -214,37 +214,37 @@ wrkld_vpc_subnets = {
     wrkld-zone-1-subnet-vsi = {
       zone_number = "1"
       cidr_block = "10.40.10.0/24"
-      network_acl = ""
+      network_acl = "wrkld-base-acl"
     },
     wrkld-zone-1-subnet-vpe = {
       zone_number = "1"
       cidr_block = "10.40.20.0/24"
-      network_acl = ""
+      network_acl = "wrkld-base-acl"
     },
     wrkld-zone-1-subnet-vpn = {
       zone_number = "1"
       cidr_block = "10.40.30.0/24"
-      network_acl = ""
+      network_acl = "wrkld-base-acl"
     },
     wrkld-zone-2-subnet-vsi = {
       zone_number = "2"
       cidr_block = "10.50.10.0/24"
-      network_acl = ""
+      network_acl = "wrkld-base-acl"
     },
     wrkld-zone-2-subnet-vpe = {
       zone_number = "2"
       cidr_block = "10.50.20.0/24"
-      network_acl = ""
+      network_acl = "wrkld-base-acl"
     },
     wrkld-zone-3-subnet-vsi = {
       zone_number = "3"
       cidr_block = "10.60.10.0/24"
-      network_acl = ""
+      network_acl = "wrkld-base-acl"
     },
     wrkld-zone-3-subnet-vpe = {
       zone_number = "3"
       cidr_block = "10.60.20.0/24"
-      network_acl = ""
+      network_acl = "wrkld-base-acl"
     }
   }
 
@@ -281,7 +281,7 @@ wrkld_security_groups = {
       rules = [
         {
             direction = "inbound"
-            remote = "base-security-group"
+            remote = "wrkld-base-security-group"
         },
         {
             direction   = "inbound"
@@ -293,7 +293,7 @@ wrkld_security_groups = {
         },
         {
             direction = "outbound"
-            remote = "base-security-group"
+            remote = "wrkld-base-security-group"
         },
         {
             direction = "outbound"
@@ -338,7 +338,7 @@ wrkld_vsis = [
       image_id = "<USER INPUT REQUIRED>"
       profile = "cx2-2x4"
       subnet = "wrkld-zone-1-subnet-vsi"
-      security_groups = ["base-security-group"]
+      security_groups = ["wrkld-base-security-group"]
       ssh_key_list = ["wrkld-sshkey"]
    },
    {
@@ -347,7 +347,7 @@ wrkld_vsis = [
       image_id = "<USER INPUT REQUIRED>"
       profile = "cx2-2x4"
       subnet = "wrkld-zone-2-subnet-vsi"
-      security_groups = ["base-security-group"]
+      security_groups = ["wrkld-base-security-group"]
       ssh_key_list = ["wrkld-sshkey"]
    },
    {
@@ -356,7 +356,7 @@ wrkld_vsis = [
       image_id = "<USER INPUT REQUIRED>"
       profile = "cx2-2x4"
       subnet = "wrkld-zone-3-subnet-vsi"
-      security_groups = ["base-security-group"]
+      security_groups = ["wrkld-base-security-group"]
       ssh_key_list = ["wrkld-sshkey"]
    },
 ]
