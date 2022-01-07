@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: task-schematics-destroy-resources
+  name: task-destroy-resources
 spec:
   params:
     - name: pipeline-debug
@@ -29,7 +29,7 @@ spec:
       - name: CONFIRM_DELETION
         value: "$(params.confirm-deletion)"
   steps:
-    - name: destroy-resources
+    - name: destroy-resources-task
       image: icr.io/continuous-delivery/pipeline/pipeline-base-ubi:3.3
       imagePullPolicy: Always
       command: ["/bin/bash", "-c"]

@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: schematics
+  name: infrasructure-provision-task
 spec:
   params:
     - name: repository
@@ -58,7 +58,7 @@ spec:
       - name: SCHEMATICS_WKSP
         value: "$(params.schematics-wksp)"
   steps:
-    - name: schematics-workspace
+    - name: workspace-create
       image: icr.io/continuous-delivery/pipeline/pipeline-base-ubi:3.3
       workingDir: "/artifacts"
       imagePullPolicy: Always
@@ -144,7 +144,7 @@ spec:
         - mountPath: /config
           name: cd-config-volume
 
-    - name: schematics-pull-latest
+    - name: workspace-pull-latest
       image: icr.io/continuous-delivery/pipeline/pipeline-base-ubi:3.3
       workingDir: "/artifacts"
       imagePullPolicy: Always
@@ -203,7 +203,7 @@ spec:
         - mountPath: /config
           name: cd-config-volume
 
-    - name: schematics-refresh
+    - name: workspace-refresh
       image: icr.io/continuous-delivery/pipeline/pipeline-base-ubi:3.3
       workingDir: "/artifacts"
       imagePullPolicy: Always
@@ -267,7 +267,7 @@ spec:
         - mountPath: /config
           name: cd-config-volume
 
-    - name: schematics-plan
+    - name: workspace-plan
       image: icr.io/continuous-delivery/pipeline/pipeline-base-ubi:3.3
       workingDir: "/artifacts"
       imagePullPolicy: Always
@@ -330,7 +330,7 @@ spec:
         - mountPath: /config
           name: cd-config-volume
 
-    - name: schematics-apply
+    - name: workspace-apply
       image: icr.io/continuous-delivery/pipeline/pipeline-base-ubi:3.3
       workingDir: "/artifacts"
       imagePullPolicy: Always

@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: cra-scan
+  name: compliance-scan-task
 spec:
   params:
     - name: repository
@@ -48,7 +48,7 @@ spec:
             name: $(params.continuous-delivery-context-secret)
             key: $(params.ibmcloud-apikey-secret-key)
   steps:
-    - name: code-risk-analyzer-scan
+    - name: code-scan
       image: icr.io/continuous-delivery/pipeline/pipeline-base-ubi:3.3
       workingDir: "/artifacts"
       imagePullPolicy: Always
