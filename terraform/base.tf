@@ -160,6 +160,8 @@ module "mgmt_flow_log_cos_bucket" {
   endpoint_type       = (var.mgmt_flow_log_bucket_endpoint_type != null ?  var.mgmt_flow_log_bucket_endpoint_type  : "public")
   force_delete        = true
   kms_key_crn         = module.kms_encryption_keys[var.mgmt_flow_log_encryption_key_name].key.crn
+
+  depends_on = [module.authorization_policies]
 }
 
 resource ibm_is_flow_log mgmt_flowlog {
@@ -219,6 +221,8 @@ module "wrkld_flow_log_cos_bucket" {
   endpoint_type       = (var.wrkld_flow_log_bucket_endpoint_type != null ?  var.wrkld_flow_log_bucket_endpoint_type  : "public")
   force_delete        = true
   kms_key_crn         = module.kms_encryption_keys[var.wrkld_flow_log_encryption_key_name].key.crn
+
+  depends_on = [module.authorization_policies]
 }
 
 resource ibm_is_flow_log wrkld_flowlog {
