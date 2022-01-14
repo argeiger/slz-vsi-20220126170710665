@@ -217,6 +217,15 @@ variable "wrkld_flow_log_encryption_key_name" {
 }
 
 #######################################################################
+# Common VPC variables
+#######################################################################
+variable "default_image_id" {
+   description = "The default image id that will be used for the VSI"
+   type = string
+   default = ""
+}
+
+#######################################################################
 # Management VPC variables
 #######################################################################
 

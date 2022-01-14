@@ -136,6 +136,8 @@ module "mgmt_vpc" {
 
   encryption_key_crn = module.kms_encryption_keys[var.mgmt_block_storage_encryption_key_name].key.crn
   ssh_keys = var.mgmt_ssh_keys
+
+  default_image_id = var.default_image_id
   servers = var.mgmt_vsis
   
   endpoint_gateways = { for k,v in var.mgmt_endpoint_gateways : 
@@ -197,8 +199,11 @@ source = "git::https://git@github.com/slzone/terraform-vpc-module.git"
   security_groups = var.wrkld_security_groups
 
   encryption_key_crn = module.kms_encryption_keys[var.wrkld_block_storage_encryption_key_name].key.crn
+  
   ssh_keys = var.wrkld_ssh_keys
+  default_image_id = var.default_image_id
   servers = var.wrkld_vsis
+
   endpoint_gateways = { for k,v in var.wrkld_endpoint_gateways : 
     k => merge(v, {endpoint_crn=replace(v["endpoint_crn"], "{REGION}", var.region)}) 
   }
