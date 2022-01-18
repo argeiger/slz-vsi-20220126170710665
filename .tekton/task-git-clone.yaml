@@ -366,7 +366,7 @@ spec:
         echo -n "${BRANCH}" > $(results.git-branch.path)
         echo -n "${GIT_COMMIT}" > $(results.git-commit.path)
         echo -n "${GIT_AUTH_USER}" > $(results.git-user.path)
-        chmod -R 777 /artifacts/*
+        #chmod -R 777 /artifacts/*
       volumeMounts:
         - mountPath: /steps
           name: steps-volume
