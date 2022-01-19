@@ -138,6 +138,7 @@ module "mgmt_vpc" {
   ssh_keys = var.mgmt_ssh_keys
 
   default_image_id = var.default_image_id
+  default_vsi_count = var.default_management_vsi_count
   servers = var.mgmt_vsis
   
   endpoint_gateways = { for k,v in var.mgmt_endpoint_gateways : 
@@ -181,8 +182,8 @@ resource ibm_is_flow_log mgmt_flowlog {
 # Workload VPC
 #############################################
 module "wrkld_vpc" {
-source = "git::https://git@github.com/slzone/terraform-vpc-module.git"
-#source = "../../terraform-vpc-module"
+  source = "git::https://git@github.com/slzone/terraform-vpc-module.git"
+  #source = "../../terraform-vpc-module"
   
   region = var.region
   prefix = var.prefix
@@ -202,6 +203,7 @@ source = "git::https://git@github.com/slzone/terraform-vpc-module.git"
   
   ssh_keys = var.wrkld_ssh_keys
   default_image_id = var.default_image_id
+  default_vsi_count = var.default_workload_vsi_count
   servers = var.wrkld_vsis
 
   endpoint_gateways = { for k,v in var.wrkld_endpoint_gateways : 
