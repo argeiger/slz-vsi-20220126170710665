@@ -1,5 +1,33 @@
+#######################################################################
+# Values that need input
+#######################################################################
+# A prefix that you would like applied to all resources
 prefix = "<USER INPUT REQUIRED>"
+
+# The region that resources will be provisioned in
 region = "<USER INPUT REQUIRED>"
+
+# SSH keys for each VPC.  
+# Note: They can not use the same key
+mgmt_ssh_keys = [
+    {
+      name = "mgmt-sshkey"
+      public_key = "<USER INPUT REQUIRED>"
+      tags = []
+    }
+  ]
+
+wrkld_ssh_keys = [
+    {
+      name = "wrkld-sshkey"
+      public_key = "<USER INPUT REQUIRED>"
+      tags = []
+    }
+  ]
+
+# Sets a default OS image to use if you do not specify on a VSI basis
+default_image_id = "<USER INPUT REQUIRED>"
+
 
 #######################################################################
 # Common service variables
@@ -140,19 +168,11 @@ mgmt_security_groups = {
   }
 }
 
-mgmt_ssh_keys = [
-    {
-      name = "mgmt-sshkey"
-      public_key = "<USER INPUT REQUIRED>"
-      tags = []
-    }
-  ]
-
 mgmt_vsis = [
    {
       count = 1
       name = "mgmt-server-zone-1"
-      image_id = "<USER INPUT REQUIRED>"
+      image_id = ""
       profile = "cx2-2x4"
       subnet = "mgmt-zone-1-subnet-vsi"
       security_groups = ["mgmt-base-security-group"]
@@ -161,7 +181,7 @@ mgmt_vsis = [
    {
       count = 1
       name = "mgmt-server-zone-2"
-      image_id = "<USER INPUT REQUIRED>"
+      image_id = ""
       profile = "cx2-2x4"
       subnet = "mgmt-zone-2-subnet-vsi"
       security_groups = ["mgmt-base-security-group"]
@@ -170,7 +190,7 @@ mgmt_vsis = [
    {
       count = 1
       name = "mgmt-server-zone-3"
-      image_id = "<USER INPUT REQUIRED>"
+      image_id = ""
       profile = "cx2-2x4"
       subnet = "mgmt-zone-3-subnet-vsi"
       security_groups = ["mgmt-base-security-group"]
@@ -323,19 +343,11 @@ wrkld_security_groups = {
   }
 }
 
-wrkld_ssh_keys = [
-    {
-      name = "wrkld-sshkey"
-      public_key = "<USER INPUT REQUIRED>"
-      tags = []
-    }
-  ]
-
 wrkld_vsis = [
    {
       count = 1
       name = "wrkld-server-zone-1"
-      image_id = "<USER INPUT REQUIRED>"
+      image_id = ""
       profile = "cx2-2x4"
       subnet = "wrkld-zone-1-subnet-vsi"
       security_groups = ["wrkld-base-security-group"]
@@ -344,7 +356,7 @@ wrkld_vsis = [
    {
       count = 1
       name = "wrkld-server-zone-2"
-      image_id = "<USER INPUT REQUIRED>"
+      image_id = ""
       profile = "cx2-2x4"
       subnet = "wrkld-zone-2-subnet-vsi"
       security_groups = ["wrkld-base-security-group"]
@@ -353,7 +365,7 @@ wrkld_vsis = [
    {
       count = 1
       name = "wrkld-server-zone-3"
-      image_id = "<USER INPUT REQUIRED>"
+      image_id = ""
       profile = "cx2-2x4"
       subnet = "wrkld-zone-3-subnet-vsi"
       security_groups = ["wrkld-base-security-group"]
