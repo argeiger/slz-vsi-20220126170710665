@@ -283,6 +283,12 @@ variable "mgmt_ssh_keys" {
    default = []
 }
 
+variable "default_management_vsi_count" {
+   description = "The default count for number of VSI's that will be provisioned in the management account"
+   type = number
+   default = null
+}
+
 variable "mgmt_vsis" {
    description = "A list of VSI's and their attributes that you would like to provision"
    type = list
@@ -381,6 +387,12 @@ variable "wrkld_ssh_keys" {
    description = "Workload VPC SSH keys"
    type = list 
    default = []
+}
+
+variable "default_workload_vsi_count" {
+   description = "The default count for number of VSI's that will be provisioned in the workload account"
+   type = number
+   default = null
 }
 
 variable "wrkld_vsis" {

@@ -27,6 +27,8 @@ wrkld_ssh_keys = [
 
 # Sets a default OS image to use if you do not specify on a VSI basis
 default_image_id = "<USER INPUT REQUIRED>"
+default_management_vsi_count = 1
+default_workload_vsi_count = 1
 
 
 #######################################################################
@@ -170,7 +172,7 @@ mgmt_security_groups = {
 
 mgmt_vsis = [
    {
-      count = 1
+      #count = 1
       name = "mgmt-server-zone-1"
       image_id = ""
       profile = "cx2-2x4"
@@ -179,7 +181,7 @@ mgmt_vsis = [
       ssh_key_list = ["mgmt-sshkey"]
    },
    {
-      count = 1
+      #count = 1
       name = "mgmt-server-zone-2"
       image_id = ""
       profile = "cx2-2x4"
@@ -188,7 +190,7 @@ mgmt_vsis = [
       ssh_key_list = ["mgmt-sshkey"]
    },
    {
-      count = 1
+      #count = 1
       name = "mgmt-server-zone-3"
       image_id = ""
       profile = "cx2-2x4"
@@ -345,7 +347,7 @@ wrkld_security_groups = {
 
 wrkld_vsis = [
    {
-      count = 1
+      #count = 1
       name = "wrkld-server-zone-1"
       image_id = ""
       profile = "cx2-2x4"
@@ -354,7 +356,7 @@ wrkld_vsis = [
       ssh_key_list = ["wrkld-sshkey"]
    },
    {
-      count = 1
+      #count = 1
       name = "wrkld-server-zone-2"
       image_id = ""
       profile = "cx2-2x4"
@@ -363,7 +365,7 @@ wrkld_vsis = [
       ssh_key_list = ["wrkld-sshkey"]
    },
    {
-      count = 1
+      #count = 1
       name = "wrkld-server-zone-3"
       image_id = ""
       profile = "cx2-2x4"
