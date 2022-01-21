@@ -48,7 +48,7 @@ module "resource_groups" {
 # KMS instance/keys
 #############################################
 module "kms_instance" {
-  source = "git::https://git@github.com/slzone/terraform-kms-module.git//modules/instance"
+  source = "git::https://git@github.com/slzone/terraform-kms-module.git//modules/instance?ref=v1.0.0"
   #source  = "../../terraform-kms-module/modules/instance"
 
   kms_provision = var.kms_provision
@@ -61,7 +61,7 @@ module "kms_instance" {
 }
 
 module "kms_encryption_keys" {
-  source = "git::https://git@github.com/slzone/terraform-kms-module.git//modules/key"
+  source = "git::https://git@github.com/slzone/terraform-kms-module.git//modules/key?ref=v1.0.0"
   #source  = "../../terraform-kms-module/modules/key"
 
   for_each = {for k in local.kms_encryption_keys: k => k}
@@ -117,7 +117,7 @@ module "authorization_policies" {
 # Management VPC
 #############################################
 module "mgmt_vpc" {
-  source = "git::https://git@github.com/slzone/terraform-vpc-module.git"
+  source = "git::https://git@github.com/slzone/terraform-vpc-module.git?ref=v1.0.0"
   #source = "../../terraform-vpc-module"
   
   region = var.region
@@ -182,7 +182,7 @@ resource ibm_is_flow_log mgmt_flowlog {
 # Workload VPC
 #############################################
 module "wrkld_vpc" {
-  source = "git::https://git@github.com/slzone/terraform-vpc-module.git"
+  source = "git::https://git@github.com/slzone/terraform-vpc-module.git?ref=v1.0.0"
   #source = "../../terraform-vpc-module"
   
   region = var.region
