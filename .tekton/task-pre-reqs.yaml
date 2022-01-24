@@ -44,6 +44,7 @@ spec:
 
           if [[ ! -f manifest.json ]]; then
              echo "Missing manifest file to check updates"
+             exit 0;
           fi 
 
           REMOTE_REPO=$(cat manifest.json | jq -r .repository)
