@@ -101,7 +101,7 @@ spec:
           fi
 
           echo "Verify that all inputs that need to be user defined are set"
-          grep -w "<USER DEFINED INPUT>" ./terraform/terraform.tfvars
+          grep -w "<USER INPUT REQUIRED>" ./terraform/terraform.tfvars
           if [[ $? -eq 0 ]]; then
             echo "terraform.tfvars file contain variables that need user input.  Please change the variables that are set to <USER DEFINED INPUT> to an appropriate value"
             exit 1;
